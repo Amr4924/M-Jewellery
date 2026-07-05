@@ -1,17 +1,175 @@
-# M Jewellery
+<div align="center">
 
-Official mobile app for M Jewellery.
+# 💎 M Jewellery
 
-## Getting Started
+**A luxury jewellery shopping experience, built in Flutter.**
 
-This project is a starting point for a Flutter application.
+![Flutter](https://img.shields.io/badge/Flutter-3.44%2B-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-3.12%2B-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-informational?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-In%20Progress-yellow?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-A few resources to get you started if this is your first Flutter project:
+*A mobile storefront concept for a jewellery brand — onboarding, authentication, a bilingual shop catalog, and a profile hub, all wrapped in a deep‑green‑and‑gold luxury theme.*
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+</div>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## ✨ Overview
+
+**M Jewellery** is a Flutter mobile app concept for a jewellery brand. It's designed around the feeling of walking into a boutique: a cinematic animated intro, an elegant onboarding flow, and a shop experience that highlights featured pieces, exclusives, and offers.
+
+The app currently ships as a **polished, fully local front-end** — every screen renders and flows correctly, and it's built to slot a real backend / auth service in later without a rewrite.
+
+> 🧠 **Note:** This is an active work in progress. The core navigation, theming, and shop UI are in place; a few screens (like Home) and backend integration are still on the roadmap. See [What's Next](#-whats-next) below.
+
+---
+
+## 🖼️ App Flow
+
+```
+Splash / Animated Intro  →  Onboarding  →  Login / Create Account  →  Main App (Bottom Nav)
+                                                                          ├── Home
+                                                                          ├── Shop
+                                                                          └── Profile
+```
+
+---
+
+## 🚀 Features
+
+### 🎬 Splash & Onboarding
+- Animated typewriter-style intro with a gold shader gradient (`AnimatedTextKit` + `ShaderMask`) that sets the luxury tone before the user even taps anything.
+- Onboarding `PageView` with a brand tagline and a **Get Started** CTA into the auth flow.
+
+### 🔐 Authentication
+- **Login** screen with form validation (empty fields, email format, password length) and a show/hide password toggle.
+- **Create Account** screen with the same validation approach, wired to a lightweight local `UserModel` / `AuthManager`.
+- Clean, reusable validation messaging — ready to be swapped for real backend error handling later.
+
+### 🛍️ Shop
+- **Featured Products** carousel at the top of the shop tab.
+- **Exclusive** and **Offers** sections to spotlight promoted pieces.
+- **Full Product Grid** with image, title, and price for every item — currently backed by a local mock dataset of 15+ jewellery pieces (rings, necklaces, bracelets).
+- Cart icon in the app bar, ready to be connected to real cart logic.
+
+### 👤 Profile
+- Account summary card.
+- Sectioned settings list (Account / Support) inspired by real e‑commerce apps: Manage Profile, Password & Security, Notifications, Help Center, Contact Us, Report a Problem, Privacy Policy.
+- Slide-out drawer with **Log Out**.
+- Dedicated **App Language** screen with an animated toggle switch.
+
+### 🌍 Localization
+- Full **English / Arabic** support out of the box via `easy_localization`, with every string (validation errors, nav labels, screen titles) translated in `assets/translations`.
+- One-tap language switch that updates the whole app instantly, including text direction–sensitive layouts.
+
+### 🎨 Branding & Theme
+- Custom luxury palette — deep emerald green (`#0A2F1D`) and gold (`#C5A059`) — applied consistently across app bars, nav bar, and buttons.
+- Custom typefaces: **Schyler** for the animated intro, **Playfair Display** for elegant serif headings.
+- Centralized `AppColors` / `AppThemes` classes with light and dark theme definitions ready to go.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Choice |
+|---|---|
+| Framework | Flutter (Dart SDK ^3.12.1) |
+| State management | `StatefulWidget` + `setState` (local state, no backend yet) |
+| Localization | [`easy_localization`](https://pub.dev/packages/easy_localization) |
+| Animation | [`animated_text_kit`](https://pub.dev/packages/animated_text_kit), `ShaderMask`, `AnimatedContainer` |
+| Data | Local mock lists (products, offers) — no API/database integration yet |
+| Platforms | Android & iOS |
+
+---
+
+## 📁 Project Structure
+
+```
+lib/
+├── main.dart                     # App entry point, localization + theme setup
+├── mainScreen.dart                # Bottom navigation shell (Home / Shop / Profile)
+├── feature/
+│   ├── app_colors.dart            # Centralized color palette & ThemeData
+│   └── change_language.dart       # Language toggle logic
+├── on Bording Screen/
+│   └── onBordingScreen.dart        # Animated splash + onboarding PageView
+├── Sign in/
+│   ├── login.dart                  # Login form + validation
+│   ├── createAccount.dart          # Sign-up form + validation
+│   └── Accounts.dart               # Local UserModel / AuthManager
+├── nav bar/
+│   ├── Home/
+│   │   └── Home.dart               # Home tab (in progress)
+│   ├── shop/
+│   │   ├── shop.dart               # Shop tab: featured / exclusive / offers / grid
+│   │   └── Widgets/                # Product cards, offer cards, carousels
+│   └── Profile/
+│       ├── profile.dart            # Profile tab + settings list + drawer
+│       ├── Widgets/                 # Account card, section buttons
+│       └── language screen/
+│           └── language_screen.dart # Language switch UI
+└── widgets/                        # Shared widgets (animated titles, section headers)
+```
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+- [Flutter SDK](https://docs.flutter.dev/get-started/install) (3.44+ recommended)
+- Dart SDK ^3.12.1
+- Android Studio / Xcode (for emulator or physical device)
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/Amr4924/M-Jewellery.git
+cd M-Jewellery
+
+# 2. Install dependencies
+flutter pub get
+
+# 3. Run the app
+flutter run
+```
+
+### Building a release
+
+```bash
+flutter build apk     # Android
+flutter build ios      # iOS
+```
+
+---
+
+## 🗺️ What's Next
+
+- [ ] Build out the **Home** tab (currently a placeholder screen).
+- [ ] Connect authentication to a real backend (Firebase / REST API) instead of the local mock `AuthManager`.
+- [ ] Wire up cart & checkout flow from the Shop tab.
+- [ ] Add product detail pages (tap-through from cards).
+- [ ] Persist user session and language preference across app restarts.
+- [ ] Add automated widget tests.
+
+---
+
+## 🤝 Contributing
+
+This is currently a solo learning/portfolio project, but suggestions and issues are always welcome — feel free to open an issue or fork the repo.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — feel free to use it as a learning reference.
+
+---
+
+<div align="center">
+
+**Built with 💚 and Flutter.**
+
+</div>
