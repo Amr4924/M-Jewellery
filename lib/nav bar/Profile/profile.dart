@@ -57,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           SizedBox(height: 20),
           buidCardAccount(),
           SizedBox(height: 20),
-          buildTitleDepartment(title: tr('profile-account-section')),
+          buildTitleDepartment(bold: false,title: tr('profile-account-section')),
 
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -96,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           SizedBox(height: 20),
-          buildTitleDepartment(title: tr('profile-support-section')),
+          buildTitleDepartment(bold: false,title: tr('profile-support-section')),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(

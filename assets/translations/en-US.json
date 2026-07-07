@@ -45,5 +45,12 @@
     "nav-home": "Home",
     "nav-shop": "Shop",
     "nav-profile": "Profile",
-    "log-out": "Log out"
+    "log-out": "Log out",
+    
+    "title-home": "Home",
+    "title-ad": "New Collection",
+    "ads": "The Royal Emerald",
+    "title-featured": "Featured Collections",
+    "title-art": "The Art of Jewelry",
+    "description-art": "Where exceptional craftsmanship meets unmatched brilliance. Every detail tells a story."
 }

@@ -117,6 +117,8 @@ class _ShopScreenState extends State<ShopScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 239, 235, 235),
+      drawer: Drawer(),
+
       appBar: AppBar(
         backgroundColor: const Color(0xFF0A2F1D),
         iconTheme: IconThemeData(color: const Color(0xFFC5A059)),
@@ -136,13 +138,16 @@ class _ShopScreenState extends State<ShopScreen> {
         children: [
           buildFeaturedProducts(),
           SizedBox(height: 30),
-          buildTitleDepartment(title: tr('shop-exclusive-section')),
+          buildTitleDepartment(
+            bold: false,
+            title: tr('shop-exclusive-section'),
+          ),
           buildProductOffers(context: context, products: products),
           SizedBox(height: 30),
-          buildTitleDepartment(title: tr('shop-offers-section')),
+          buildTitleDepartment(bold: false, title: tr('shop-offers-section')),
           buildProductOffers(context: context, products: products),
           SizedBox(height: 30),
-          buildTitleDepartment(title: tr('shop-products-section')),
+          buildTitleDepartment(bold: false, title: tr('shop-products-section')),
           buildBuildProductsDisplay(products),
         ],
       ),
