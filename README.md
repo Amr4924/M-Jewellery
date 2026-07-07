@@ -22,7 +22,7 @@
 
 The app currently ships as a **polished, fully local front-end** — every screen renders and flows correctly, and it's built to slot a real backend / auth service in later without a rewrite.
 
-> 🧠 **Note:** This is an active work in progress. The core navigation, theming, and shop UI are in place; a few screens (like Home) and backend integration are still on the roadmap. See [What's Next](#-whats-next) below.
+> 🧠 **Note:** This is an active work in progress. The core navigation, theming, Home tab, and shop UI are all in place; backend integration and cart/checkout logic are still on the roadmap. See [What's Next](#-whats-next) below.
 
 ---
 
@@ -42,6 +42,13 @@ Splash / Animated Intro  →  Onboarding  →  Login / Create Account  →  Main
 ### 🎬 Splash & Onboarding
 - Animated typewriter-style intro with a gold shader gradient (`AnimatedTextKit` + `ShaderMask`) that sets the luxury tone before the user even taps anything.
 - Onboarding `PageView` with a brand tagline and a **Get Started** CTA into the auth flow.
+
+### 🏠 Home
+- Full-width **banner ad / promo** section (e.g. "New Collection — The Royal Emerald") with rounded corners over a hero image.
+- Horizontally scrollable **Featured Collections** carousel.
+- **"The Art of Jewelry"** editorial showcase card, pairing an image with brand storytelling copy.
+- A second, larger-format collections carousel styled as a "style guide" strip.
+- **Notifications** screen accessible from a bell icon in the app bar, with a live unread-count badge, "mark all as read," and "clear all" actions — includes a welcome system message personalized with the signed-up user's name.
 
 ### 🔐 Authentication
 - **Login** screen with form validation (empty fields, email format, password length) and a show/hide password toggle.
@@ -101,7 +108,10 @@ lib/
 │   └── Accounts.dart               # Local UserModel / AuthManager
 ├── nav bar/
 │   ├── Home/
-│   │   └── Home.dart               # Home tab (in progress)
+│   │   ├── Home.dart                # Home tab: banner, collections, art showcase
+│   │   ├── Widgets/                 # App bar, banner ad, carousels, art card
+│   │   └── notification/
+│   │       └── notification.dart    # Notifications screen (badge, mark-read, clear)
 │   ├── shop/
 │   │   ├── shop.dart               # Shop tab: featured / exclusive / offers / grid
 │   │   └── Widgets/                # Product cards, offer cards, carousels
@@ -147,7 +157,6 @@ flutter build ios      # iOS
 
 ## 🗺️ What's Next
 
-- [ ] Build out the **Home** tab (currently a placeholder screen).
 - [ ] Connect authentication to a real backend (Firebase / REST API) instead of the local mock `AuthManager`.
 - [ ] Wire up cart & checkout flow from the Shop tab.
 - [ ] Add product detail pages (tap-through from cards).
