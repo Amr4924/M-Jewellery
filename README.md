@@ -39,6 +39,13 @@ Splash / Animated Intro  →  Onboarding  →  Login / Create Account  →  Main
 
 ## 🚀 Features
 
+### ⚡ Performance & Architecture
+- Reusable UI pieces (drawer, section titles, cards, banners, animated title, buttons) were refactored from plain **builder functions** into dedicated **`StatelessWidget` classes with `const` constructors**. This lets Flutter skip rebuilding unchanged branches of the widget tree instead of re-running a function on every parent rebuild.
+- Large screens (**Login**, **Onboarding**, **Create Account**) were split from single monolithic `build()` methods into smaller composable widgets — so a local state change (e.g. toggling password visibility, a loading spinner) only rebuilds the piece that actually changed.
+- A single shared `BuildDrawer` widget — with live user info (name/email/phone) pulled from `SaveRecord` and a working **Log Out** action — now backs Home, Shop, and Profile, replacing three separate hard-coded drawers.
+- The onboarding splash now uses `AnimatedSwitcher` to transition between the loading screen and the page view instead of manual state-based rebuilding.
+- The **Login** button now reflects real submit state: it validates against locally registered accounts, shows a loading spinner, and disables itself while "signing in" to prevent double taps.
+
 ### 🎬 Splash & Onboarding
 - Animated typewriter-style intro with a gold shader gradient (`AnimatedTextKit` + `ShaderMask`) that sets the luxury tone before the user even taps anything.
 - Onboarding `PageView` with a brand tagline and a **Get Started** CTA into the auth flow.
@@ -101,9 +108,14 @@ lib/
 │   ├── app_colors.dart            # Centralized color palette & ThemeData
 │   └── change_language.dart       # Language toggle logic
 ├── on Bording Screen/
-│   └── onBordingScreen.dart        # Animated splash + onboarding PageView
+│   ├── onBordingScreen.dart         # Switches between loading screen and page view
+│   └── widgets/
+│       ├── loding_screen.dart       # Animated gold-gradient splash text
+│       └── build_page_view.dart     # Welcome PageView + "Get Started" CTA
 ├── Sign in/
-│   ├── login.dart                  # Login form + validation
+│   ├── login/
+│   │   ├── login.dart              # Login screen (form + state)
+│   │   └── widgets/                 # Login button (with loading state), forgot password, create-account link
 │   ├── createAccount.dart          # Sign-up form + validation
 │   └── Accounts.dart               # Local UserModel / AuthManager
 ├── nav bar/
@@ -116,11 +128,11 @@ lib/
 │   │   ├── shop.dart               # Shop tab: featured / exclusive / offers / grid
 │   │   └── Widgets/                # Product cards, offer cards, carousels
 │   └── Profile/
-│       ├── profile.dart            # Profile tab + settings list + drawer
+│       ├── profile.dart            # Profile tab + settings list
 │       ├── Widgets/                 # Account card, section buttons
 │       └── language screen/
 │           └── language_screen.dart # Language switch UI
-└── widgets/                        # Shared widgets (animated titles, section headers)
+└── widgets/                        # Shared widgets: drawer, animated titles, section headers
 ```
 
 ---
@@ -158,6 +170,8 @@ flutter build ios      # iOS
 ## 🗺️ What's Next
 
 - [ ] Connect authentication to a real backend (Firebase / REST API) instead of the local mock `AuthManager`.
+- [ ] Mark widget instances as `const` at the call site (e.g. `const BuildBanarAds()`) wherever no dynamic data is passed, to get the full benefit of the new const-constructor refactor.
+- [ ] Cache network images (e.g. `cached_network_image`) across Home/Shop so scrolling doesn't re-decode full-resolution images on every rebuild.
 - [ ] Wire up cart & checkout flow from the Shop tab.
 - [ ] Add product detail pages (tap-through from cards).
 - [ ] Persist user session and language preference across app restarts.
