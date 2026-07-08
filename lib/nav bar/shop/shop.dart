@@ -5,6 +5,7 @@ import 'package:loding_screen/nav%20bar/shop/Widgets/showcasing_featured_product
 import 'package:loding_screen/nav%20bar/shop/Widgets/view_product_offers.dart';
 import 'package:loding_screen/widgets/animated_title.dart';
 import 'package:loding_screen/widgets/department_titles.dart';
+import 'package:loding_screen/widgets/drawer.dart';
 
 class ShopScreen extends StatefulWidget {
   const ShopScreen({super.key});
@@ -117,12 +118,12 @@ class _ShopScreenState extends State<ShopScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 239, 235, 235),
-      drawer: Drawer(),
+      drawer: BuildDrawer(),
 
       appBar: AppBar(
         backgroundColor: const Color(0xFF0A2F1D),
         iconTheme: IconThemeData(color: const Color(0xFFC5A059)),
-        title: buildAnimatedTitle(title: tr('shop-title')),
+        title: BuildAnimatedTitle(title: tr('shop-title')),
         centerTitle: true,
         actions: [
           Padding(
@@ -136,19 +137,19 @@ class _ShopScreenState extends State<ShopScreen> {
       ),
       body: ListView(
         children: [
-          buildFeaturedProducts(),
+          BuildFeaturedProducts(),
           SizedBox(height: 30),
-          buildTitleDepartment(
+          BuildTitleDepartment(
             bold: false,
             title: tr('shop-exclusive-section'),
           ),
-          buildProductOffers(context: context, products: products),
+          BuildProductOffers(products: products),
           SizedBox(height: 30),
-          buildTitleDepartment(bold: false, title: tr('shop-offers-section')),
-          buildProductOffers(context: context, products: products),
+          BuildTitleDepartment(bold: false, title: tr('shop-offers-section')),
+          BuildProductOffers(products: products),
           SizedBox(height: 30),
-          buildTitleDepartment(bold: false, title: tr('shop-products-section')),
-          buildBuildProductsDisplay(products),
+          BuildTitleDepartment(bold: false, title: tr('shop-products-section')),
+          BuildBuildProductsDisplay(products: products),
         ],
       ),
     );

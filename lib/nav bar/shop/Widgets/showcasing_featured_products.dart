@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:loding_screen/nav%20bar/shop/Widgets/special_offer_card.dart';
 
-Widget buildFeaturedProducts() {
-  return Padding(
+class BuildFeaturedProducts extends StatelessWidget {
+  const BuildFeaturedProducts({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
     padding: const EdgeInsets.all(8.0),
     child: SizedBox(
       height: 300,
@@ -25,4 +28,5 @@ Widget buildFeaturedProducts() {
       ),
     ),
   );
+  }
 }

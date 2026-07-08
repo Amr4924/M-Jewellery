@@ -28,7 +28,7 @@ class _NotificationsState extends State<Notifications> {
         backgroundColor: const Color(0xFF0A2F1D),
         iconTheme: IconThemeData(color: const Color(0xFFC5A059)),
         centerTitle: true,
-        title: buildAnimatedTitle(title: tr('Notifications')),
+        title: BuildAnimatedTitle(title: tr('Notifications')),
         actions: [
           IconButton(
             onPressed: () {

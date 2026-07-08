@@ -23,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: const Color(0xFF0A2F1D),
         selectedItemColor: const Color(0xFFC5A059),
         unselectedItemColor: Colors.white,
-        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+        selectedLabelStyle:const TextStyle(fontWeight: FontWeight.bold),
         currentIndex: indexPage,
         onTap: (value) {
           setState(() {

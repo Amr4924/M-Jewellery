@@ -13,7 +13,7 @@ PreferredSizeWidget buildAppBar({
     backgroundColor: const Color(0xFF0A2F1D),
     iconTheme: IconThemeData(color: const Color(0xFFC5A059)),
     centerTitle: true,
-    title: buildAnimatedTitle(title: tr('title-home')),
+    title: BuildAnimatedTitle(title: tr('title-home')),
     actions: [
       InkWell(
         onTap: () {

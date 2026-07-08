@@ -5,6 +5,7 @@ import 'package:loding_screen/nav%20bar/Profile/Widgets/data_card.dart';
 import 'package:loding_screen/nav%20bar/Profile/language%20screen/language_screen.dart';
 import 'package:loding_screen/widgets/animated_title.dart';
 import 'package:loding_screen/widgets/department_titles.dart';
+import 'package:loding_screen/widgets/drawer.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -27,27 +28,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 239, 235, 235),
-      drawer: Drawer(
-        backgroundColor: Colors.white,
-        child: ListView(
-          children: [
-            SizedBox(height: 70),
-            Divider(height: 40),
-            ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pop(context);
-              },
-              title: Text(tr('log-out')),
-              leading: Icon(Icons.logout),
-            ),
-          ],
-        ),
-      ),
+      drawer: BuildDrawer(),
       appBar: AppBar(
         backgroundColor: const Color(0xFF0A2F1D),
         iconTheme: IconThemeData(color: const Color(0xFFC5A059)),
-        title: buildAnimatedTitle(title: tr('profile-title')),
+        title: BuildAnimatedTitle(title: tr('profile-title')),
 
         centerTitle: true,
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.edit))],
@@ -57,7 +42,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           SizedBox(height: 20),
           buidCardAccount(),
           SizedBox(height: 20),
-          buildTitleDepartment(bold: false,title: tr('profile-account-section')),
+          BuildTitleDepartment(
+            bold: false,
+            title: tr('profile-account-section'),
+          ),
 
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -69,24 +57,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               child: Column(
                 children: [
-                  buildContainerButtom(
-                    context: context,
-
+                  BuildContainerButtom(
                     title: tr('profile-manage-profile'),
                     icon: Icons.person_outline,
                   ),
-                  buildContainerButtom(
-                    context: context,
+                  BuildContainerButtom(
                     title: tr('profile-password-security'),
                     icon: Icons.lock_outline,
                   ),
-                  buildContainerButtom(
-                    context: context,
+                  BuildContainerButtom(
                     title: tr('profile-notifications'),
                     icon: Icons.notifications_outlined,
                   ),
-                  buildContainerButtom(
-                    context: context,
+                  BuildContainerButtom(
                     action: appLang,
                     title: tr('profile-app-language'),
                     icon: Icons.translate_rounded,
@@ -96,7 +79,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           SizedBox(height: 20),
-          buildTitleDepartment(bold: false,title: tr('profile-support-section')),
+          BuildTitleDepartment(
+            bold: false,
+            title: tr('profile-support-section'),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -107,25 +93,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               child: Column(
                 children: [
-                  buildContainerButtom(
-                    context: context,
-
+                  BuildContainerButtom(
                     title: tr('profile-help-center'),
                     icon: Icons.help_center_outlined,
                   ),
-                  buildContainerButtom(
-                    context: context,
-
+                  BuildContainerButtom(
                     title: tr('profile-contact-us'),
                     icon: Icons.support_agent,
                   ),
-                  buildContainerButtom(
-                    context: context,
+                  BuildContainerButtom(
                     title: tr('profile-report-problem'),
                     icon: Icons.bug_report_outlined,
                   ),
-                  buildContainerButtom(
-                    context: context,
+                  BuildContainerButtom(
                     title: tr('profile-privacy-policy'),
                     icon: Icons.info_outline,
                   ),

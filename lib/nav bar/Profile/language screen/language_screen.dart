@@ -19,7 +19,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
       appBar: AppBar(
         backgroundColor: Color(0xFF0A2F1D),
         iconTheme: IconThemeData(color: const Color(0xFFC5A059)),
-        title: buildAnimatedTitle(title: tr('profile-app-language')),
+        title: BuildAnimatedTitle(title: tr('profile-app-language')),
         centerTitle: true,
       ),
       body: Column(

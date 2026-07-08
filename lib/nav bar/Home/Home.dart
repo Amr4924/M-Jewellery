@@ -6,6 +6,7 @@ import 'package:loding_screen/nav%20bar/Home/Widgets/art_jewelry.dart';
 import 'package:loding_screen/nav%20bar/Home/Widgets/banar_ads.dart';
 import 'package:loding_screen/nav%20bar/Home/Widgets/featured_collections.dart';
 import 'package:loding_screen/widgets/department_titles.dart';
+import 'package:loding_screen/widgets/drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -38,32 +39,36 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 239, 235, 235),
-      drawer: Drawer(),
-      appBar: buildAppBar(countMessage: countMessage, context: context,clear:clearMessage ),
+      drawer: BuildDrawer(),
+      appBar: buildAppBar(
+        countMessage: countMessage,
+        context: context,
+        clear: clearMessage,
+      ),
       body: ListView(
         children: [
-          buildBanarAds(),
+          BuildBanarAds(),
           SizedBox(height: 50),
-          buildTitleDepartment(
+          BuildTitleDepartment(
             bold: true,
             title: tr('title-featured'),
             color: Color(0xFFC5A059),
           ),
-          buildFeaturedCollections(img: imgs, constraints: 150),
+          BuildFeaturedCollections(img: imgs, constraints: 150),
           SizedBox(height: 50),
-          buildTitleDepartment(
+          BuildTitleDepartment(
             bold: true,
             title: tr('title-art'),
             color: Color(0xFFC5A059),
           ),
-          buildArtJewelry(),
+          BuildArtJewelry(),
           SizedBox(height: 50),
-          buildTitleDepartment(
+          BuildTitleDepartment(
             bold: true,
             title: tr('title-art'),
             color: Color(0xFFC5A059),
           ),
-          buildFeaturedCollections(img: imgStyleGuid, constraints: 250),
+          BuildFeaturedCollections(img: imgStyleGuid, constraints: 250),
         ],
       ),
     );

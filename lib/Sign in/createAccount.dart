@@ -224,8 +224,7 @@ class _CreateAccoundScreenState extends State<CreateAccoundScreen> {
                         ),
                       ),
                     ),
-                    _buildButtomSignUp(
-                      context: context,
+                    BuildButtomSignUp(
                       form: _formKey,
                       name: nameController,
                       email: emailController,
@@ -245,48 +244,60 @@ class _CreateAccoundScreenState extends State<CreateAccoundScreen> {
   }
 }
 
-Widget _buildButtomSignUp({
-  required BuildContext context,
-  required GlobalKey<FormState> form,
-  required TextEditingController name,
-  required TextEditingController email,
-  required TextEditingController phone,
-  required TextEditingController password,
-  required VoidCallback lod,
-  required bool lodData,
-}) {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: ElevatedButton(
-      style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF0A2F1D)),
-      onPressed: !lodData
-          ? null
-          : () {
-              if (form.currentState!.validate()) {
-                AuthManager.registerUsers.add(
-                  UserModel(
-                    name: name.text,
-                    email: email.text,
-                    password: password.text,
-                    phone: phone.text,
+class BuildButtomSignUp extends StatelessWidget {
+  final GlobalKey<FormState> form;
+  final TextEditingController name;
+  final TextEditingController email;
+  final TextEditingController phone;
+  final TextEditingController password;
+  final VoidCallback lod;
+  final bool lodData;
+  const BuildButtomSignUp({
+    super.key,
+    required this.form,
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.password,
+    required this.lod,
+    required this.lodData,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF0A2F1D)),
+        onPressed: !lodData
+            ? null
+            : () {
+                if (form.currentState!.validate()) {
+                  AuthManager.registerUsers.add(
+                    UserModel(
+                      name: name.text,
+                      email: email.text,
+                      password: password.text,
+                      phone: phone.text,
+                    ),
+                  );
+                  lod();
+                }
+              },
+        child: Center(
+          child: lodData
+              ? Text(
+                  tr('sign-up'),
+                  style: TextStyle(
+                    color: Color(0xFFC5A059),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'PlayfairDisplay',
                   ),
-                );
-                lod();
-              }
-            },
-      child: Center(
-        child: lodData
-            ? Text(
-                tr('sign-up'),
-                style: TextStyle(
-                  color: Color(0xFFC5A059),
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'PlayfairDisplay',
-                ),
-              )
-            : CircularProgressIndicator(color: Color(0xFFC5A059)),
+                )
+              : CircularProgressIndicator(color: Color(0xFFC5A059)),
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
